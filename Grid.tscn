@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bof54wt5l2ymg"]
+
+[ext_resource type="Script" path="res://Script/Grid.gd" id="1_mqv4a"]
+[ext_resource type="Script" path="res://Control.gd" id="2_seuxj"]
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("ui")]
+script = ExtResource("1_mqv4a")
+grid_size = Vector2(20, 20)
+square_pixel_size = 40
+ui = NodePath("Control")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Control" type="Node2D" parent="."]
+position = Vector2(1, 1)
+script = ExtResource("2_seuxj")
+metadata/_edit_group_ = true
+
+[node name="PaintMode" type="Label" parent="Control"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 98.0
+offset_bottom = 27.0
+text = "Mode: Paint"
+
+[node name="PlayMode" type="Label" parent="Control"]
+offset_left = 1.0
+offset_top = 26.0
+offset_right = 64.0
+offset_bottom = 52.0
+text = "Play: off"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
